@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio – Krish Garg</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+
+.contact-form {
+  margin-top: 40px;
+  max-width: 500px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.contact-form button {
+  padding: 12px;
+  border-radius: 100px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), #d4a84b);
+  color: #0b0f1a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+}
+
+.project-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.project-links a {
+  font-size: 0.75rem;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--muted);
+  transition: all 0.25s ease;
+  z-index: 3;
+  position: relative;
+}
+
+.project-links a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(232,196,122,0.08);
+}
+
+/* FIX HOVER ISSUE */
+.project-card {
+  position: relative;
+}
+
+.project-card a.full-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* IMPORTANT FIX */
+.project-links {
+  position: relative;
+  z-index: 5;
+}
+  :root {
+    --bg: #0b0f1a;
+    --surface: #131929;
+    --card: #1a2235;
+    --accent: #e8c47a;
+    --accent2: #5eb8ff;
+    --text: #e8eaf0;
+    --muted: #8892a4;
+    --border: rgba(255,255,255,0.07);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 6vw 60px; overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute; top: -120px; right: -80px; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,196,122,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute; bottom: -100px; left: -60px; width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(94,184,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 900; line-height: 1.05;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    margin-top: 12px; font-size: 1rem; color: var(--accent2); font-weight: 400; letter-spacing: 0.03em;
+  }
+  .hero-about {
+    margin-top: 24px; max-width: 620px;
+    border-left: 2px solid var(--accent); padding-left: 18px;
+  }
+  .hero-about p {
+    font-size: 0.97rem; color: var(--muted); line-height: 1.85; font-weight: 300;
+  }
+  .hero-tags {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+  }
+  .tag {
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;
+    border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--muted);
+  }
+  .tag.gold { border-color: rgba(232,196,122,0.4); color: var(--accent); background: rgba(232,196,122,0.06); }
+  .tag.blue { border-color: rgba(94,184,255,0.4); color: var(--accent2); background: rgba(94,184,255,0.06); }
+  .hero-actions {
+    display: flex; gap: 14px; flex-wrap: wrap; margin-top: 32px;
+  }
+  .btn-resume {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 13px 28px; border-radius: 100px;
+    background: linear-gradient(135deg, var(--accent), #d4a84b);
+    color: #0b0f1a; font-weight: 700; font-size: 0.88rem; letter-spacing: 0.04em;
+    text-decoration: none; transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 4px 20px rgba(232,196,122,0.25);
+  }
+  .btn-resume:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,196,122,0.4); }
+  .btn-resume svg { width: 16px; height: 16px; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 13px 28px; border-radius: 100px;
+    border: 1px solid rgba(232,196,122,0.35); color: var(--accent);
+    font-weight: 600; font-size: 0.88rem; text-decoration: none;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .btn-outline:hover { background: rgba(232,196,122,0.06); border-color: var(--accent); }
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin: 0 6vw 0;
+  }
+
+  /* SECTIONS */
+  section { padding: 70px 6vw; position: relative; }
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; line-height: 1.15; margin-bottom: 50px;
+  }
+
+  /* TECHNICAL SKILLS */
+  .tech-categories { display: flex; flex-direction: column; gap: 32px; }
+  .tech-category-title {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent2); font-weight: 600; margin-bottom: 14px;
+  }
+  .tech-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tech-pill {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 18px; border-radius: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 0.85rem; font-weight: 500; color: var(--text);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .tech-pill:hover { border-color: rgba(94,184,255,0.4); transform: translateY(-2px); }
+  .tech-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
+  .tech-pill .dot.gold { background: var(--accent); }
+  .tech-pill .dot.green { background: #5effa0; }
+  .tech-pill .dot.purple { background: #c084fc; }
+
+  /* SOFT SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 30px; position: relative; overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .skill-card:hover { transform: translateY(-4px); border-color: rgba(232,196,122,0.3); }
+  .skill-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .skill-card:hover::before { opacity: 1; }
+  .skill-icon { font-size: 1.8rem; margin-bottom: 16px; }
+  .skill-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+  .skill-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .skill-level { display: flex; gap: 5px; margin-top: 18px; }
+  .pip { height: 4px; flex: 1; border-radius: 100px; background: var(--border); }
+  .pip.filled { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .project-card:hover { transform: translateY(-5px); border-color: rgba(94,184,255,0.35); }
+  .project-header {
+    padding: 28px 28px 0;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  }
+  .project-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(94,184,255,0.2), rgba(232,196,122,0.1));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .project-badge {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent2); background: rgba(94,184,255,0.1);
+    border: 1px solid rgba(94,184,255,0.25);
+    padding: 4px 12px; border-radius: 100px; font-weight: 600; white-space: nowrap;
+  }
+  .project-body { padding: 20px 28px 28px; }
+  .project-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+  .project-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+  .stack-tag {
+    font-size: 0.72rem; padding: 4px 11px; border-radius: 6px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    color: var(--muted); font-weight: 500;
+  }
+  .project-highlights { list-style: none; }
+  .project-highlights li {
+    font-size: 0.84rem; color: var(--muted); line-height: 1.6;
+    padding: 5px 0; border-top: 1px solid var(--border);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .project-highlights li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 45px; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -34px; top: 8px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 10px rgba(232,196,122,0.5);
+  }
+  .tl-date { font-size: 0.72rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+  .tl-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 5px; }
+  .tl-org { font-size: 0.82rem; color: var(--accent2); font-weight: 500; margin-bottom: 10px; }
+  .tl-body { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+  .tl-body strong { color: var(--text); }
+
+  /* STRENGTHS */
+  .strength-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .strength-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px 24px;
+    display: flex; align-items: center; gap: 16px; transition: border-color 0.3s;
+  }
+  .strength-item:hover { border-color: rgba(94,184,255,0.3); }
+  .strength-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .strength-text { font-size: 0.9rem; font-weight: 500; }
+
+  /* CONTACT */
+  .contact-grid { display: flex; flex-wrap: wrap; gap: 16px; }
+  .contact-chip {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 100px; padding: 12px 22px;
+    font-size: 0.88rem; color: var(--muted); transition: border-color 0.3s, color 0.3s;
+  }
+  .contact-chip:hover { border-color: var(--accent); color: var(--text); }
+  .contact-chip .ci { color: var(--accent); font-size: 1rem; }
+
+  footer {
+    text-align: center; padding: 40px 6vw;
+    font-size: 0.78rem; color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <h1>Krish <span>Garg</span></h1>
+  <p class="hero-sub">B.Tech CSE — AI &amp; ML &nbsp;·&nbsp; Lovely Professional University, Punjab</p>
+
+  <div class="hero-about">
+    <p style="margin-top:10px; color:var(--accent); font-weight:600;">
+      Building intelligent systems with AI, NLP & real-world impact 🚀
+    </p>
+    <p>I'm a passionate AI &amp; ML engineer-in-training who thrives at the intersection of data, intelligence, and real-world impact. With hands-on experience building deep learning models, NLP pipelines, and end-to-end web applications, I turn complex problems into elegant, scalable solutions. I believe the most powerful technology is built not just with code — but with curiosity, collaboration, and a relentless drive to keep learning.</p>
+  </div>
+
+  <div class="hero-tags">
+    <span class="tag gold">Effective Communicator</span>
+    <span class="tag gold">Team Player</span>
+    <span class="tag blue">Critical Thinker</span>
+    <span class="tag blue">Adaptable Learner</span>
+    <span class="tag">Problem Solver</span>
+    <span class="tag">Leadership</span>
+  </div>
+
+  <div class="hero-actions">
+    <a href="resume.pdf" download class="btn-resume">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-3.5-3.5M12 16l3.5-3.5M4 20h16"/>
+      </svg>
+      Download Resume
+    </a>
+    <a href="#contact" class="btn-outline">Get in Touch</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TECHNICAL SKILLS -->
+<section>
+  <p class="section-label">Stack &amp; Tools</p>
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="tech-categories">
+
+    <div>
+      <div class="tech-category-title">Languages</div>
+      <div class="tech-pills">
+        <div class="tech-pill"><span class="dot gold"></span>Python</div>
+        <div class="tech-pill"><span class="dot gold"></span>C++</div>
+        <div class="tech-pill"><span class="dot gold"></span>SQL</div>
+        <div class="tech-pill"><span class="dot gold"></span>JavaScript</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="tech-category-title">AI / Machine Learning</div>
+      <div class="tech-pills">
+        <div class="tech-pill"><span class="dot"></span>TensorFlow</div>
+        <div class="tech-pill"><span class="dot"></span>PyTorch</div>
+        <div class="tech-pill"><span class="dot"></span>scikit-learn</div>
+        <div class="tech-pill"><span class="dot"></span>HuggingFace Transformers</div>
+        <div class="tech-pill"><span class="dot"></span>NLTK / spaCy</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="tech-category-title">Data &amp; Analytics</div>
+      <div class="tech-pills">
+        <div class="tech-pill"><span class="dot green"></span>NumPy</div>
+        <div class="tech-pill"><span class="dot green"></span>Pandas</div>
+        <div class="tech-pill"><span class="dot green"></span>Matplotlib</div>
+        <div class="tech-pill"><span class="dot green"></span>Seaborn</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="tech-category-title">Tools &amp; Platforms</div>
+      <div class="tech-pills">
+        <div class="tech-pill"><span class="dot purple"></span>Django</div>
+        <div class="tech-pill"><span class="dot purple"></span>Git &amp; GitHub</div>
+        <div class="tech-pill"><span class="dot purple"></span>Jupyter Notebook</div>
+        <div class="tech-pill"><span class="dot purple"></span>Google Colab</div>
+        <div class="tech-pill"><span class="dot purple"></span>VS Code</div>
+        <div class="tech-pill"><span class="dot purple"></span>Linux / Ubuntu</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<!-- PROJECTS -->
+<section style="background: var(--surface);">
+  <p class="section-label">What I've Built</p>
+  <h2 class="section-title">Featured Projects</h2>
+
+  <div class="projects-grid">
+
+    <!-- Sentiment -->
+    <div class="project-card">
+      <a href="#" class="full-link" target="_blank"></a>
+
+      <div class="project-header">
+        <div class="project-icon">🧠</div>
+        <span class="project-badge">NLP · Deep Learning</span>
+      </div>
+
+      <div class="project-body">
+        <div class="project-title">Sentiment Analysis Engine</div>
+        <div class="project-desc">Built NLP pipeline with 91% accuracy using BERT.</div>
+
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">BERT</span>
+          <span class="stack-tag">Django</span>
+        </div>
+
+        <ul class="project-highlights">
+          <li>Processed 50K+ samples</li>
+          <li>Improved F1-score</li>
+          <li>Django deployment</li>
+        </ul>
+
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fake News -->
+    <div class="project-card">
+      <a href="#" class="full-link" target="_blank"></a>
+
+      <div class="project-header">
+        <div class="project-icon">📰</div>
+        <span class="project-badge">NLP · ML</span>
+      </div>
+
+      <div class="project-body">
+        <div class="project-title">Fake News Detection</div>
+        <div class="project-desc">Classifies news as real/fake using ML.</div>
+
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">scikit-learn</span>
+          <span class="stack-tag">Django</span>
+        </div>
+
+        <ul class="project-highlights">
+          <li>TF-IDF + Logistic Regression</li>
+          <li>Real-time predictions</li>
+          <li>Full-stack Django app</li>
+        </ul>
+
+        <div class="project-links">
+          <a href="https://github.com/KrishGarg546/Fake-news-detector" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inventory -->
+    <div class="project-card">
+      <a href="#" class="full-link" target="_blank"></a>
+
+      <div class="project-header">
+        <div class="project-icon">📦</div>
+        <span class="project-badge">Full Stack · SaaS</span>
+      </div>
+
+      <div class="project-body">
+        <div class="project-title">Inventory Management SaaS</div>
+        <div class="project-desc">Django-based inventory system.</div>
+
+        <div class="project-stack">
+          <span class="stack-tag">Django</span>
+          <span class="stack-tag">SQLite</span>
+          <span class="stack-tag">JS</span>
+        </div>
+
+        <ul class="project-highlights">
+          <li>Category-based tracking</li>
+          <li>CRUD operations</li>
+          <li>Responsive UI</li>
+        </ul>
+
+        <div class="project-links">
+          <a href="#" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- SOFT SKILLS -->
+<section>
+  <p class="section-label">Core Competencies</p>
+  <h2 class="section-title">Soft Skills that Drive Impact</h2>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-icon">🗣️</div>
+      <div class="skill-name">Communication</div>
+      <div class="skill-desc">Able to present complex AI/ML concepts clearly to both technical peers and non-technical stakeholders. Comfortable with public speaking, written reports, and cross-functional collaboration.</div>
+      <div class="skill-level">
+        <div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip"></div>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🤝</div>
+      <div class="skill-name">Teamwork &amp; Collaboration</div>
+      <div class="skill-desc">Thrive in agile, cross-disciplinary teams. Contributed as a reliable member in group projects, hackathons, and lab assignments — always meeting deadlines and supporting teammates.</div>
+      <div class="skill-level">
+        <div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">💡</div>
+      <div class="skill-name">Critical Thinking</div>
+      <div class="skill-desc">Approach ambiguous problems with structured frameworks. Whether debugging a model or designing a solution, I break problems into components and evaluate trade-offs before acting.</div>
+      <div class="skill-level">
+        <div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip"></div>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">🧭</div>
+      <div class="skill-name">Leadership</div>
+      <div class="skill-desc">Led a 4-member team for a machine learning project, coordinating task allocation, timelines, and reviews. Focused on motivating teammates and maintaining a healthy team dynamic.</div>
+      <div class="skill-level">
+        <div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip"></div><div class="pip"></div>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">Adaptability</div>
+      <div class="skill-desc">AI/ML moves fast — I embrace change. Quickly adapted to new frameworks, new team structures, and shifting project scopes without losing momentum.</div>
+      <div class="skill-level">
+        <div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip"></div>
+      </div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">⏳</div>
+      <div class="skill-name">Time Management</div>
+      <div class="skill-desc">Balance coursework, personal projects, and extracurriculars without missing commitments. Use priority matrices and weekly planning to stay on top of deadlines and deliverables.</div>
+      <div class="skill-level">
+        <div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip filled"></div><div class="pip"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE TIMELINE -->
+<section style="background: var(--surface);">
+  <p class="section-label">Evidence in Action</p>
+  <h2 class="section-title">Where I've Applied These Skills</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-date">Jan 2025 – Present</div>
+      <div class="tl-title">Sentiment Analysis Engine</div>
+      <div class="tl-org">Academic Project · LPU</div>
+      <div class="tl-body"><strong>Communication &amp; Leadership:</strong> Presented project proposal to a panel of 3 faculty members and led weekly stand-ups for a 4-person team. Translated model metrics into a clear narrative for non-technical reviewers.</div>
+    </div>
+
+    
+
+    <div class="tl-item">
+      <div class="tl-date">Aug 2024</div>
+      <div class="tl-title">Workshop Facilitator — Python for Beginners</div>
+      <div class="tl-org">LPU Coding Club</div>
+      <div class="tl-body"><strong>Communication &amp; Empathy:</strong> Designed and delivered a 2-hour Python session for 30+ first-year students. Received positive feedback for making content approachable and engaging.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Jul 2024</div>
+      <div class="tl-title">Online Course — Emotional Intelligence at Work</div>
+      <div class="tl-org">Coursera</div>
+      <div class="tl-body"><strong>Self-Awareness &amp; Adaptability:</strong> Completed a certified EQ course covering active listening, managing stress, and giving constructive feedback — immediately applied in group projects.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section>
+  <p class="section-label">What Sets Me Apart</p>
+  <h2 class="section-title">Personal Strengths</h2>
+  <div class="strength-row">
+    <div class="strength-item"><div class="strength-icon">🎯</div><div class="strength-text">Goal-Oriented Mindset</div></div>
+    <div class="strength-item"><div class="strength-icon">🔍</div><div class="strength-text">Attention to Detail</div></div>
+    <div class="strength-item"><div class="strength-icon">🌱</div><div class="strength-text">Continuous Learner</div></div>
+    <div class="strength-item"><div class="strength-icon">🤗</div><div class="strength-text">Empathetic Collaborator</div></div>
+    <div class="strength-item"><div class="strength-icon">🧩</div><div class="strength-text">Creative Problem Solver</div></div>
+    <div class="strength-item"><div class="strength-icon">📣</div><div class="strength-text">Confident Presenter</div></div>
+    <div class="strength-item"><div class="strength-icon">🔄</div><div class="strength-text">Open to Feedback</div></div>
+    <div class="strength-item"><div class="strength-icon">⚖️</div><div class="strength-text">Ethical Decision Maker</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Get in Touch</p>
+  <h2 class="section-title">Let's Connect</h2>
+
+  <div class="contact-grid">
+
+    <!-- Clickable links -->
+    <a href="mailto:krish.garg@lpu.in" class="contact-chip">
+      <span class="ci">✉️</span> Email Me
+    </a>
+
+    <a href="https://www.linkedin.com/in/krishgarg123/" target="_blank" class="contact-chip">
+      <span class="ci">💼</span> LinkedIn
+    </a>
+
+    <a href="https://github.com/KrishGarg546" target="_blank" class="contact-chip">
+      <span class="ci">🐙</span> GitHub
+    </a>
+
+  </div>
+
+  <!-- CONTACT FORM -->
+  <div class="contact-form">
+
+    <form action="https://formspree.io/f/mgopwklo" method="POST">
+
+      <input type="text" name="name" placeholder="Your Name" required>
+
+      <input type="email" name="email" placeholder="Your Email" required>
+
+      <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+
+      <button type="submit">Send Message</button>
+
+    </form>
+
+  </div>
+
+</section>
+<footer>
+  <p>© 2025 Krish Garg &nbsp;·&nbsp; B.Tech CSE AI &amp; ML &nbsp;·&nbsp; Lovely Professional University</p>
+  <p style="margin-top:6px; font-size:0.72rem;">Portfolio — prepared for academic and professional use</p>
+</footer>
+
+</body>
+</html>
